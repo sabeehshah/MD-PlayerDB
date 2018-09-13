@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+    <i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Add Player
+  </div>
+  <div class="card-body">
+    <form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="firstName"
+          #playerFirstName="ngModel"
+          [ngClass]="{'is-invalid':playerFirstName.errors && playerFirstName.touched}"
+          [(ngModel)]="player.firstName"
+          minlength="2"
+          required
+        >
+        <div [hidden]="!playerFirstName.errors?.required" class="invalid-feedback">
+          First name required!
+        </div>
+        <div [hidden]="!playerFirstName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="lastName"
+          #playerLastName="ngModel"
+          [ngClass]="{'is-invalid':playerLastName.errors && playerLastName.touched}"
+          [(ngModel)]="player.lastName"
+          minlength="2"
+          required
+        >
+        <div [hidden]="!playerLastName.errors?.required" class="invalid-feedback">
+          Last name required!
+        </div>
+        <div [hidden]="!playerLastName.errors?.minlength" class="invalid-feedback">
+          Must be at least 2 characters!
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="role">Role</label>
+          <input 
+            type="text"
+            class="form-control"
+            name="role"
+            #playerRole="ngModel"
+            [ngClass]="{'is-invalid':playerRole.errors && playerRole.touched}"
+            [(ngModel)]="player.role"
+            minlength="4"
+            required
+          >
+          <div [hidden]="!playerRole.errors?.required" class="invalid-feedback">
+            Player role required!
+          </div>
+          <div [hidden]="!playerRole.errors?.minlength" class="invalid-feedback">
+            Must be at least 5 characters!
+          </div>
+        </div>
+  
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="email"
+          #playerEmail="ngModel"
+          [ngClass]="{'is-invalid':playerEmail.errors && playerEmail.touched}"
+          [(ngModel)]="player.email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+          required
+        >
+        <div [hidden]="!playerEmail.errors?.required" class="invalid-feedback">
+          Email required!
+        </div>
+        <div [hidden]="!playerEmail.errors?.pattern" class="invalid-feedback">
+          Email is not valid!
+        </div>
+      </div>
+
+     <div class="form-group">
+        <label for="phone">Phone</label>
+        <input 
+          type="text"
+          class="form-control"
+          name="phone"
+          #playerPhone="ngModel"
+          [ngClass]="{'is-invalid':playerPhone.errors && playerPhone.touched}"
+          [(ngModel)]="player.phone"
+          minlength="10"
+          required
+        >
+        <div [hidden]="!playerPhone.errors?.required" class="invalid-feedback">
+         Phone # required!
+        </div>
+        <div [hidden]="!playerPhone.errors?.minlength" class="invalid-feedback">
+          Must be at least 10 characters!
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="balance">Balance</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="player.balance"
+          name="balance"
+          #playerBalance = "ngModel"
+          [disabled]="disabledBalanceOnAdd" 
+        >
+      </div>
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+    </form>
+  </div>
+</div>
