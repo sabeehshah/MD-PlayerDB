@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule} from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -49,7 +50,12 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [PlayerService, AuthService],
+  providers: [
+    PlayerService, 
+    AuthService,    
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
+  
   
   bootstrap: [AppComponent]
 })
